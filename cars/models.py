@@ -1,9 +1,10 @@
 from datetime import datetime
 
 from django.db import models
-
+from ckeditor.fields import RichTextField
 
 # Create your models here.
+
 
 class Car(models.Model):
     state_choice = (
@@ -95,7 +96,7 @@ class Car(models.Model):
     year = models.IntegerField(('year'), choices=year_choice)
     condition = models.CharField(max_length=100)
     price = models.IntegerField()
-    description = models.CharField(max_length=500)
+    description = RichTextField()
     car_photo = models.ImageField(upload_to='photos/%y%m%d', blank=True)
     car_photo1 = models.ImageField(upload_to='photos/%y%m%d', blank=True)
     car_photo2 = models.ImageField(upload_to='photos/%y%m%d', blank=True)
@@ -113,5 +114,8 @@ class Car(models.Model):
     milage = models.IntegerField()
     fuel_type = models.CharField(max_length=50)
     no_of_owners = models.CharField(max_length=100)
-    is_featured = models.BooleanField(default= False)
+    is_featured = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=datetime.now, blank=True)
+
+    def __str__(self):
+        return self.car_title
