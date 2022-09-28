@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'multiselectfield',
     'django.contrib.humanize',
 
+
 ]
 
 MIDDLEWARE = [
