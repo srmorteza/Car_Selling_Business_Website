@@ -6,6 +6,18 @@ from django.shortcuts import render, redirect
 # Create your views here.
 
 def login(request):
+    if request.method == 'POST':
+        password = request.POST['password']
+        username = request.POST['username']
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            messages.success(request, 'you are now login')
+            return redirect('dashboard')
+        else:
+            messages.error(request, 'invalid username or password')
+            return redirect('login')
+
     return render(request, 'accounts/login.html')
 
 
@@ -31,10 +43,11 @@ def register(request):
                                                     username=username, password=password)
                     auth.login(request, user)
                     messages.success(request, 'your now login')
-                    return redirect('dashboard')
                     user.save()
-                    messages.success(request, 'your register success')
-                    return redirect('login')
+                    return redirect('dashboard')
+
+                    # messages.success(request, 'your register success')
+                    # return redirect('login')
 
         else:
             messages.error(request, 'password do not match')
