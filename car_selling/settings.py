@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -41,6 +42,12 @@ INSTALLED_APPS = [
     'multiselectfield',
     'django.contrib.humanize',
     'accounts',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+    'contacts',
 
 ]
 
@@ -140,3 +147,5 @@ MESSAGE_TAGS = {
     messages.ERROR: 'secondary',
     50: 'critical',
 }
+
+SITE_ID = 1
